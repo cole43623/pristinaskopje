@@ -117,9 +117,24 @@ actCards.forEach(card => {
     const time  = card.getAttribute('data-time');
     const text  = card.getAttribute('data-text');
     const tips  = card.getAttribute('data-tips');
+    const img   = card.getAttribute('data-image');
+
+    // Blocco foto (solo se data-image è presente)
+    const photoHTML = img ? `
+      <div class="modal-photo-frame">
+        <img
+          src="${img}"
+          alt="${title}"
+          class="modal-photo"
+          onerror="this.closest('.modal-photo-frame').style.display='none'"
+        />
+        <span class="modal-photo-caption">📸 ${title}</span>
+      </div>
+    ` : '';
 
     // Costruisce la bolla informativa
     modalBody.innerHTML = `
+      ${photoHTML}
       <span class="modal-kicker">Consigli di viaggio · ${time} 💡</span>
       <h3 class="modal-title">${title}</h3>
       <div class="modal-meta-row">

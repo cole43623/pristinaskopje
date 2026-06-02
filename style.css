@@ -1118,23 +1118,34 @@ em {
 .r-item {
   display: flex;
   align-items: baseline;
+  gap: 0.4rem;
 }
 .ri-name {
   white-space: nowrap;
+  flex: 1;           /* spinge il prezzo a destra anche senza i puntini */
 }
 .ri-dots {
   flex: 1;
-  border-bottom: 1px dotted #ccc;
-  margin: 0 4px;
-  align-self: stretch;
+  min-width: 0;           /* permette lo shrink sotto la dimensione del contenuto */
+  overflow: hidden;       /* taglia i puntini fissi se non entrano */
+  color: transparent;     /* nasconde il testo dei puntini */
+  border-bottom: 1.5px dotted #bbb;
+  margin: 0 6px;
+  align-self: center;
+  height: 0;
 }
 .ri-price {
   font-weight: 700;
+  white-space: nowrap;
 }
 
 .receipt-divider {
-  text-align: center;
-  color: #999;
+  border: none;
+  border-top: 2px dashed #ccc;
+  margin: 0.4rem 0;
+  color: transparent;   /* nasconde gli = fissi */
+  overflow: hidden;
+  height: 0;
 }
 .total-row {
   font-size: 0.95rem;
@@ -1482,6 +1493,39 @@ em {
   font-size: 0.8rem;
   color: var(--muted);
   line-height: 1.6;
+}
+
+/* ── Foto nel popup ── */
+.modal-photo-frame {
+  position: relative;
+  width: calc(100% + 3.2rem);
+  margin: -1.6rem -1.6rem 0 -1.6rem;
+  overflow: hidden;
+  border-radius: 12px 12px 0 0;
+  max-height: 220px;
+}
+.modal-photo {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+  filter: saturate(1.1) contrast(1.05);
+  transition: transform 0.4s ease;
+}
+.modal-photo-frame:hover .modal-photo {
+  transform: scale(1.03);
+}
+.modal-photo-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 0.5rem 1rem;
+  background: linear-gradient(transparent, rgba(0,0,0,0.55));
+  color: #fff;
+  font-family: var(--f-hand);
+  font-size: 0.9rem;
+  letter-spacing: 0.02em;
 }
 
 /* ═══════════════════════════════════════
