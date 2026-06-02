@@ -844,7 +844,7 @@ em {
    TRANSFER (Il Biglietto Strappato)
    ═══════════════════════════════════════ */
 .transfer-section {
-  background: rgba(21, 48, 78, 0.04);
+  background: transparent;
   padding: 6rem 2rem;
   position: relative;
   z-index: 10;
@@ -868,6 +868,18 @@ em {
   font-weight: 300;
   color: var(--navy);
   margin-bottom: 3.5rem;
+}
+
+.day-ticket-wrapper {
+  position: relative;
+  margin: 3.5rem auto;
+  width: 100%;
+}
+.section-phase-lbl {
+  width: 100%;
+  text-align: left;
+  border-bottom: 1px dotted var(--rule);
+  padding-bottom: 0.5rem;
 }
 
 /* Struttura fisica biglietto */
