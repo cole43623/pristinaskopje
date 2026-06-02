@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pristina → Skopje · Estate 2026</title>
+  <meta name="description" content="Itinerario 4 giorni Pristina–Skopje. Kosovo e Macedonia del Nord, luglio 2026." />
+  
+  <!-- Google Fonts: Cormorant Garamond, Inter, e CAVEAT per le scritte a mano -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- EFFETTO TELA: Canvas per disegni/particelle e scia di acquerello -->
+  <div id="paint-canvas-container"></div>
+
+  <!-- FLOATING EMOJIS (Decorazione del cielo fluttuante) -->
+  <div class="sky-emoji" style="top: 10%; left: 8%; --d: 6s; --ty: -15px;">✈️</div>
+  <div class="sky-emoji" style="top: 25%; right: 12%; --d: 8s; --ty: -20px;">☁️</div>
+  <div class="sky-emoji" style="top: 45%; left: 85%; --d: 5s; --ty: -12px;">🗺️</div>
+  <div class="sky-emoji" style="top: 70%; left: 4%; --d: 7s; --ty: -18px;">📸</div>
+  <div class="sky-emoji" style="top: 85%; right: 5%; --d: 9s; --ty: -25px;">☀️</div>
+
+  <!-- NAV (Stile tavolozza di colori / campionario washi tape) -->
+  <nav id="navbar">
+    <div class="nav-inner">
+      <span class="nav-logo">✈️ Balcani '26</span>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="#day1" class="nav-color-swatch swatch-pink">Giorno I</a></li>
+        <li><a href="#day2" class="nav-color-swatch swatch-blue">Giorno II</a></li>
+        <li><a href="#day3" class="nav-color-swatch swatch-gold">Giorno III</a></li>
+        <li><a href="#day4" class="nav-color-swatch swatch-green">Giorno IV</a></li>
+        <li><a href="#budget" class="nav-color-swatch swatch-tan">Budget</a></li>
+        <li><a href="#info" class="nav-color-swatch swatch-navy">Info</a></li>
+      </ul>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#day1">Giorno I · Arrivo a Pristina</a>
+      <a href="#day2">Giorno II · Pristina</a>
+      <a href="#day3">Giorno III · Skopje</a>
+      <a href="#day4">Giorno IV · Canyon</a>
+      <a href="#budget">Budget del viaggio</a>
+      <a href="#info">Info pratiche</a>
+    </div>
+  </nav>
+
+  <!-- ══ HERO (Dipinto sul cielo) ══ -->
+  <header class="hero" id="hero">
+    <div class="hero-bg">
+      <img src="hero_balkans_1780408210690.png" alt="Pristina e Skopje" class="hero-img" />
+      <div class="hero-veil"></div>
+    </div>
+    <div class="hero-text">
+      <p class="hero-eyebrow float-in" style="--d:0.1s">Estate 2026 · Kosovo & Macedonia del Nord</p>
+      <h1 class="hero-title float-in" style="--d:0.3s">
+        Pristina<br>
+        <span class="handwritten-arrow">→</span><br>
+        Skopje
+      </h1>
+      <p class="hero-meta float-in" style="--d:0.7s">
+        4 giorni · 3 notti · 3–4 persone<br>
+        22–25 Luglio &nbsp;·&nbsp; 29 Lug – 1 Ago
+      </p>
+      
+      <!-- Diario di bordo (Nota scritta a mano) -->
+      <div class="hero-journal-note float-in" style="--d:0.9s">
+        <span class="washi-tape tape-yellow"></span>
+        <p class="journal-handwriting">"Un viaggio insolito tra due capitali ricche di contrasti, caffè all'aperto e mercati storici. Solo 95 km in autobus, ma mondi totalmente diversi..."</p>
+      </div>
+
+      <div class="hero-scroll float-in" style="--d:1.2s">
+        <span class="scroll-line"></span>
+        <span class="scroll-label">Scorri la tela</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ══ ROUTE BAR (Mappa stradale disegnata) ══ -->
+  <div class="route-bar">
+    <div class="rb-inner">
+      <div class="route-map-container reveal">
+        <span class="rb-city">🏳️ Pristina (Kosovo)</span>
+        
+        <div class="rb-drawn-path">
+          <svg width="100%" height="30" viewBox="0 0 200 30" preserveAspectRatio="none">
+            <path d="M 5 15 Q 50 2, 100 15 T 195 15" fill="none" stroke="rgba(212,168,92,0.8)" stroke-width="2" stroke-dasharray="6,4" />
+          </svg>
+          <span class="rb-bus-sticker">🚌</span>
+        </div>
+        
+        <div class="rb-handwritten-note">
+          <span class="note-arrow">✏️</span> 95 km · 1h 45m · ~5–10 €
+        </div>
+        
+        <span class="rb-city">🇲🇰 Skopje (Macedonia)</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ PANORAMICA (Scrapbook Collage) ══ -->
+  <section class="panorama">
+    <div class="pan-wrap">
+      
+      <!-- Polaroid Sinistra: Pristina -->
+      <div class="polaroid-wrapper rot-left reveal-l">
+        <div class="polaroid-frame">
+          <span class="pushpin">📌</span>
+          <img src="pristina_city_1780408407422.png" alt="Pristina" class="polaroid-img" />
+          <p class="polaroid-caption">Pristina: Newborn &amp; Vitalità 🏳️</p>
+        </div>
+      </div>
+      
+      <!-- Corpo Panoramica (Diario) -->
+      <div class="pan-body">
+        <p class="pan-kicker reveal">Appunti di viaggio</p>
+        <h2 class="pan-title reveal">Due capitali,<br><em>un solo respiro</em></h2>
+        <p class="pan-lead reveal">Pristina, la capitale più giovane d'Europa. Skopje, la metropoli macedone illuminata di marmo e storia. In mezzo, un bus di 95 chilometri e due mondi che non assomigliano a nulla che abbiate già visto.</p>
+        
+        <!-- Foglietto di quaderno appuntato per i dettagli delle città -->
+        <div class="notebook-sheet reveal">
+          <span class="washi-tape tape-blue"></span>
+          <h3 class="notebook-title">Cose da non perdere 📝</h3>
+          <div class="notebook-lists">
+            <div class="notebook-list-col">
+              <h4>Pristina (Giorno I - II)</h4>
+              <ul>
+                <li>Newborn Monument</li>
+                <li>Biblioteca Nazionale</li>
+                <li>Cattedrale Madre Teresa</li>
+                <li>Piazza Skanderbeg</li>
+                <li>Mother Teresa Boulevard</li>
+              </ul>
+            </div>
+            <div class="notebook-list-col">
+              <h4>Skopje (Giorno III - IV)</h4>
+              <ul>
+                <li>Bazar Ottomano</li>
+                <li>Stone Bridge · Vardar</li>
+                <li>Fortezza Kale</li>
+                <li>Museo Indipendenza</li>
+                <li>Matka Canyon 🛶</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Polaroid Destra: Skopje -->
+      <div class="polaroid-wrapper rot-right reveal-r">
+        <div class="polaroid-frame">
+          <span class="washi-tape tape-pink"></span>
+          <img src="skopje_city_1780408426875.png" alt="Skopje" class="polaroid-img" />
+          <p class="polaroid-caption">Skopje: Luci e Ponti 🇲🇰</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══ DIVIDER ══ -->
+  <div class="chapter-break">
+    <span class="cb-line"></span>
+    <span class="cb-label reveal">Il Diario Giorno per Giorno</span>
+    <span class="cb-line"></span>
+  </div>
+
+  <!-- ══ GIORNO 1 (Arrivo a Pristina) ══ -->
+  <section class="day" id="day1">
+    <div class="day-layout">
+      
+      <!-- Visuals: Polaroid e Scritte -->
+      <div class="day-aside reveal-l">
+        <div class="polaroid-wrapper">
+          <div class="polaroid-frame">
+            <span class="pushpin">📌</span>
+            <img src="pristina_city_1780408407422.png" alt="Arrivo a Pristina" />
+            <p class="polaroid-caption">Giorno 1 · Primo incontro 📍</p>
+          </div>
+        </div>
+        <div class="handwritten-sticker rot-left">
+          <p class="sticker-text">"Kosovo! Il paese più giovane d'Europa"</p>
+        </div>
+      </div>
+      
+      <!-- Diario e Foglietti Attività -->
+      <div class="day-main">
+        <div class="day-header reveal">
+          <span class="day-number">01</span>
+          <div>
+            <h2 class="day-title">Arrivo a Pristina</h2>
+            <p class="day-subtitle">Sistemazione e primo giro esplorativo</p>
+            <span class="day-badge badge-kosovo">🏳️ Pristina, Kosovo</span>
+          </div>
+        </div>
+
+        <div class="activities-canvas">
+          
+          <!-- Attività 1 -->
+          <div class="sticky-note note-yellow reveal act-card" 
+               data-title="🌅 Arrivo e check-in" 
+               data-cost="Gratis · Portare documenti"
+               data-time="Mattina"
+               data-text="Arrivo a Pristina, trasferimento e check-in in appartamento o Airbnb in pieno centro. Iniziamo subito con un buon caffè macchiato in un bar locale — dicono che qui il caffè sia tra i migliori d'Europa!"
+               data-tips="💡 Portare sempre la carta d'identità valida per l'espatrio. La dogana kosovara non fa problemi con documenti dell'UE.">
+            <span class="pin-doodle">📍</span>
+            <span class="note-time">Mattina</span>
+            <h3>🌅 Arrivo e check-in</h3>
+            <p>Arrivo in centro, check-in e primo caffè caldo.</p>
+            <div class="note-footer">
+              <span class="tag-inline free">Gratis</span>
+              <span class="click-more">Clicca per dettagli 💡</span>
+            </div>
+          </div>
+
+          <!-- Attività 2 -->
+          <div class="sticky-note note-pink rot-right reveal act-card"
+               data-title="🗿 Newborn &amp; Memorial Heroines"
+               data-cost="Entrambi gratuiti · 30-45 min"
+               data-time="Primo pomeriggio"
+               data-text="Visita ai due principali simboli dell'indipendenza e della rinascita del Kosovo. Il Newborn viene ridipinto ogni anno con temi diversi. Il monumento Heroines, fatto con 20.000 spille metalliche, celebra le donne kosovare."
+               data-tips="💡 Si trovano a due minuti a piedi l'uno dall'altro, proprio davanti al centro commerciale Boro Ramiz.">
+            <span class="pin-doodle">📎</span>
+            <span class="note-time">Primo pomeriggio</span>
+            <h3>🗿 Newborn &amp; Heroines</h3>
+            <p>I simboli storici dell'indipendenza del 2008.</p>
+            <div class="note-footer">
+              <span class="tag-inline free">Gratuito</span>
+              <span class="click-more">Clicca per dettagli 💡</span>
+            </div>
+          </div>
+
+          <!-- Attività 3 -->
+          <div class="sticky-note note-blue reveal act-card"
+               data-title="🚶 Mother Teresa Boulevard"
+               data-cost="Gratuito · Ottimo per foto"
+               data-time="Tardo pomeriggio"
+               data-text="Passeggiata rilassante lungo il viale pedonale principale. Tutta la città si riversa qui verso l'imbrunire per il tradizionale 'xhiro' (la passeggiata serale). Ci sono tantissimi caffè a prezzi bassissimi."
+               data-tips="💡 Fermati ad osservare la vivacità locale. Un caffè espresso costa appena 1 euro.">
+            <span class="washi-tape tape-yellow"></span>
+            <span class="note-time">Tardo pomeriggio</span>
+            <h3>🚶 Mother Teresa Blvd</h3>
+            <p>Passeggiata pedonale tra i bar e lo struscio locale.</p>
+            <div class="note-footer">
+              <span class="tag-inline free">Gratuito</span>
+              <span class="click-more">Clicca per dettagli 💡</span>
+            </div>
+          </div>
+
+          <!-- Attività 4 -->
+          <div class="sticky-note note-green rot-left reveal act-card"
+               data-title="🍽 Cena tipica balcanica"
+               data-cost="5–8 € cena · 1,50 € birra"
+               data-time="Sera"
+               data-text="Cena tradizionale con qebapa (grigliata mista), byrek al formaggio o alla carne, ajvar e formaggio del Kosovo. L'atmosfera del Boulevard è eccezionale, lasciati trascinare dalla movida locale."
+               data-tips="💡 Ristorante consigliato: Pishat o Tiffany per un'esperienza ultra autentica. La birra locale Peja è economica e rinfrescante!">
+            <span class="pin-doodle">📍</span>
+            <span class="note-time">Sera</span>
+            <h3>🍽 Cena balcanica</h3>
+            <p>Qebapa, pane fresco e ottima birra locale Peja.</p>
+            <div class="note-footer">
+              <span class="tag-inline cost">5–8 €</span>
+              <span class="click-more">Clicca per dettagli 💡</span>
+            </div>
+          </div>
+
+        </div>
+
+        <blockquote class="pull-quote reveal">
+          "Pristina è una città molto giovane e vivace. I bar sono aperti fino a tardi e l'atmosfera serale sul Boulevard è tra le migliori esperienze del viaggio."
+        </blockquote>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══ GIORNO 2 (Pristina in profondità) ══ -->
+  <section class="day alt" id="day2">
+    <div class="day-layout">
+      
+      <!-- Diario e Foglietti Attività -->
+      <div class="day-main order-2">
+        <div class="day-header reveal">
+          <span class="day-number">02</span>
+          <div>
+            <h2 class="day-title">Pristina in profondità</h2>
+            <p class="day-subtitle">Cultura, storia e architettura futuristica</p>
+            <span class="day-badge badge-kosovo">🏳️ Pristina, Kosovo</span>
+          </div>
+        </div>
+
+        <div class="activities-canvas">
+          
+          <!-- Attività 1 -->
+          <div class="sticky-note note-blue rot-right reveal act-card"
+               data-title="🏛 Biblioteca Nazionale Pjeter Bogdani"
+               data-cost="Gratuito · Aperta lun–sab"
+               data-time="09:00"
+               data-text="Un capolavoro postmoderno e brutalista con 99 cupole bianche e una griglia metallica esterna. All'interno conserva un'atmosfera sospesa. Discusso e affascinante."
+               data-tips="💡 Non limitarti all'esterno! Entra nella hall principale per vedere i pavimenti a mosaico e le vetrate.">
+            <span class="pin-doodle">📎</span>
+            <span class="note-time">09:00</span>
+            <h3>🏛 Biblioteca Nazionale</h3>
+            <p>La bizzarra struttura a 99 cupole coperta da una rete metallica.</p>
+            <div class="note-footer">
+              <span class="tag-inline free">Gratis</span>
+              <span class="click-more">Clicca per dettagli 💡</span>
+            </div>
+          </div>
+
+          <!-- Attività 2 -->
+          <div class="sticky-note note-yellow reveal act-card"
+               data-title="⛪ Cattedrale di Madre Teresa"
+               data-cost="2 € campanile · Aperta 8–19"
+               data-time="10:30"
+               data-text="Una grande cattedrale cattolica in una città a maggioranza musulmana, a dimostrazione dell'orgoglio nazionale per Madre Teresa. La salita in ascensore sul campanile offre una vista a 360° sulla città."
+               data-tips="💡 Porta 2€ in contanti per l'ascensore. La vista dall'alto è ideale per scattare foto ai quartieri e alla biblioteca.">
+            <span class="washi-tape tape-pink"></span>
+            <span class="note-time">10:30</span>
+            <h3>⛪ Cattedrale &amp; Campanile</h3>
+            <p>Salita panoramica per fotografare Pristina dall'alto.</p>
+            <div class="note-footer">
+              <span class="tag-inline cost">2 €</span>
+              <span class="click-more">Clicca per dettagli 💡</span>
+            </div>
+          </div>
+
+          <!-- Attività 3 -->
+          <div class="sticky-note note-blue rot-right reveal act-card"
+               data-title="🏺 Museo Etnologico (Emin Gjiku)"
+               data-cost="Gratuito · Aperto mar–dom"
+               data-time="12:00"
+               data-text="Un'incantevole residenza ottomana del XVIII secolo immersa nel silenzio. Mostra lo stile di vita tradizionale con tappeti, armi e mobili d'epoca. Visita guidata squisita."
+               data-tips="💡 Spesso le guide locali si offrono gratuitamente per spiegare la storia della casa. Lasciare una piccola mancia è gradito.">
+            <span class="pin-doodle">📌</span>
+            <span class="note-time">12:00</span>
+            <h3>🏺 Museo Etnologico</h3>
+            <p>Oasi di pace ottomana e tradizioni nel centro storico.</p>
+            <div class="note-footer">
+              <span class="tag-inline free">Gratis</span>
+              <span class="click-more">Clicca per dettagli 💡</span>
+            </div>
+          </div>
+
+          <!-- Attività 4 -->
+          <div class="sticky-note note-pink reveal act-card"
+               data-title="🥙 Pranzo: burek fresco"
+               data-cost="~3–4 € totale pranzo"
+               data-time="13:30"
+               data-text="Pranzo veloce in una tipica burektorja del centro. Il burek è caldissimo, ripieno di carne, formaggio o spinaci, accompagnato da yogurt liquido albanese (Dhallë)."
+               data-tips="💡 Il locale 'Fellini' o i chioschetti vicino alla moschea del mercato offrono burek giganti a prezzi irrisori.">
+            <span class="washi-tape tape-blue"></span>
+            <span class="note-time">13:30</span>
+            <h3>🥙 Pranzo: burek locale</h3>
+            <p>Sfogliata fragrante ripiena nei forni del centro storico.</p>
+            <div class="note-footer">
+              <span class="tag-inline cost">~3 €</span>
+              <span class="click-more">Clicca per dettagli 💡</span>
+            </div>
+          </div>
+
+        </div>
+
+        <blockquote class="pull-quote reveal">
+          "Spesso citata come l'edificio più brutto d'Europa, la Biblioteca Nazionale è in realtà un capolavoro postmoderno — 99 cupole ispirate ai berretti albanesi, imperdibile."
+        </blockquote>
+      </div>
+
+      <!-- Visuals: Polaroid e Scritte -->
+      <div class="day-aside reveal-r order-1">
+        <div class="polaroid-wrapper rot-right">
+          <div class="polaroid-frame">
+            <span class="pushpin">📌</span>
+            <img src="pristina-national-library.jpg" alt="Pristina dettagli" style="object-position: 60% center" />
+            <p class="polaroid-caption">L'iconica Biblioteca Nazionale 📚</p>
+          </div>
+        </div>
+        <div class="handwritten-sticker rot-right" style="background: var(--gold-lt);">
+          <p class="sticker-text">"99 cupole di cemento e metallo!"</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══ TRANSFER (Il Biglietto del Bus) ══ -->
+  <div class="transfer-section" id="transfer">
+    <div class="transfer-wrap reveal">
+      
+      <p class="ticket-kicker">🚌 Il collegamento</p>
+      <h2 class="ticket-title">Il bus per la Macedonia</h2>
+      
+      <!-- Grafica del biglietto stracciato -->
+      <div class="travel-ticket">
+        <div class="ticket-left">
+          <div class="ticket-header">BOARDING PASS · BUS SERVICE 🎟️</div>
+          <div class="ticket-cities">
+            <div class="t-city">
+              <span class="tc-code">PRN</span>
+              <span class="tc-name">Pristina</span>
+              <span class="tc-country">Kosovo 🏳️</span>
+            </div>
+            <div class="t-arrow">🚌</div>
+            <div class="t-city">
+              <span class="tc-code">SKP</span>
+              <span class="tc-name">Skopje</span>
+              <span class="tc-country">Macedonia 🇲🇰</span>
+            </div>
+          </div>
+          <div class="ticket-info-grid">
+            <div class="t-grid-item">
+              <span class="t-lbl">DISTANZA</span>
+              <span class="t-val">~95 Kilometri</span>
+            </div>
+            <div class="t-grid-item">
+              <span class="t-lbl">TEMPO STIMATO</span>
+              <span class="t-val">1h 45m (salvo dogana)</span>
+            </div>
+            <div class="t-grid-item">
+              <span class="t-lbl">TARIFFA MEDIA</span>
+              <span class="t-val">max 10.00 EUR</span>
+            </div>
+            <div class="t-grid-item">
+              <span class="t-lbl">ORARI PARTENZE</span>
+              <span class="t-val">Ogni 30–60 min</span>
+            </div>
+          </div>
+          <p class="ticket-footer-note">✏️ Nota: Partire tassativamente entro le 15:00 dal Terminal Bus di Pristina per assicurarsi il pomeriggio libero a Skopje.</p>
+        </div>
+        
+        <div class="ticket-divider">
+          <span class="ticket-punch"></span>
+          <span class="ticket-punch"></span>
+          <span class="ticket-punch"></span>
+          <span class="ticket-punch"></span>
+        </div>
+        
+        <div class="ticket-right">
+          <div class="barcode">||||| | |||| || ||| | |||</div>
+          <div class="ticket-stub-details">
+            <span class="t-lbl">ANNO</span>
+            <span class="t-val font-caveat" style="font-size: 1.6rem; color: var(--gold);">Luglio 2026</span>
+            <span class="t-lbl">STATUS</span>
+            <span class="t-val ticket-stamped">KOS-MKD</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══ GIORNO 3 (Pristina → Skopje) ══ -->
+  <section class="day" id="day3">
+    <div class="day-layout">
+      
+      <!-- Visuals: Polaroid e Scritte -->
+      <div class="day-aside reveal-l">
+        <div class="polaroid-wrapper rot-left">
+          <div class="polaroid-frame">
+            <span class="washi-tape tape-yellow"></span>
+            <img src="skopje_city_1780408426875.png" alt="Skopje Piazza" />
+            <p class="polaroid-caption">Giorno 3 · Benvenuti a Skopje! 🇲🇰</p>
+          </div>
+        </div>
+        <div class="handwritten-sticker rot-left" style="background: #EAE6DF;">
+          <p class="sticker-text">"La capitale delle statue e del Vardar!"</p>
+        </div>
+      </div>
+      
+      <!-- Diario e Foglietti Attività -->
+      <div class="day-main">
+        <div class="day-header reveal">
+          <span class="day-number">03</span>
+          <div>
+            <h2 class="day-title">Pristina → Skopje</h2>
+            <p class="day-subtitle">Trasferimento e immersione nel vecchio Bazar Ottomano</p>
+            <span class="day-badge badge-macedonia">🇲🇰 Skopje, Macedonia del Nord</span>
+          </div>
+        </div>
+
+        <div class="activities-canvas">
+          
+          <!-- Attività 1 -->
+          <div class="sticky-note note-pink reveal act-card"
+               data-title="🧳 Check-out e partenza"
+               data-cost="Bus ~7 €"
+               data-time="Mattina presto"
+               data-text="Lasciamo l'appartamento a Pristina e raggiungiamo la stazione dei bus (Stacioni i Autobusave) con un breve tragitto in taxi (~2-3€) o a piedi. Acquistiamo il biglietto direttamente alla biglietteria del terminal."
+               data-tips="💡 I bus partono puntuali. Consigliato il bus delle 08:30 per non trovare code alla frontiera.">
+            <span class="pin-doodle">📎</span>
+            <span class="note-time">Mattina</span>
+            <h3>🧳 Partenza da Pristina</h3>
+            <p>Check-out, taxi per la stazione e biglietto per Skopje.</p>
+            <div class="note-footer">
+              <span class="tag-inline cost">~7 €</span>
+              <span class="click-more">Clicca per dettagli 💡</span>
+            </div>
+          </div>
+
+          <!-- Attività 2 -->
+          <div class="sticky-note note-green rot-right reveal act-card"
+               data-title="🏙️ Arrivo e check-in a Skopje"
+               data-cost="A piedi"
+               data-time="Mezzogiorno"
+               data-text="Il bus arriva al terminal centrale di Skopje, adiacente alla stazione ferroviaria. Da qui, il centro storico e la piazza principale sono raggiungibili a piedi in circa 15-20 minuti passeggiando lungo il fiume."
+               data-tips="💡 Se l'alloggio è distante, ci sono taxi ufficiali fuori dalla stazione. Concordare la tariffa o chiedere il tassametro.">
+            <span class="pin-doodle">📍</span>
+            <span class="note-time">~Mezzogiorno</span>
+            <h3>🏙️ Arrivo a Skopje</h3>
+            <p>Sistemazione in hotel o appartamento vicino al centro.</p>
+            <div class="note-footer">
+              <span class="tag-inline free">Gratuito</span>
+              <span class="click-more">Clicca per dettagli 💡</span>
+            </div>
+          </div>
+
+          <!-- Attività 3 -->
+          <div class="sticky-note note-yellow reveal act-card"
+               data-title="Moschee, caravanserragli e spezie"
+               data-cost="Gratuito"
+               data-time="Pomeriggio"
+               data-text="Čaršija è uno dei bazar ottomani più grandi e intatti d'Europa. Perditi tra le viuzze lastricate, le antiche moschee (come la Moschea di Mustafa Pascià) e i caravanserragli ottomani trasformati in gallerie d'arte o caffè."
+               data-tips="💡 Fermati a bere un tè turco servito nei tipici bicchierini di vetro presso il caffè Destan o nei locali vicino al caravanserraglio Suli An.">
+            <span class="washi-tape tape-blue"></span>
+            <span class="note-time">Pomeriggio</span>
+            <h3>🕌 Bazar Ottomano (Čaršija)</h3>
+            <p>Esplorazione del quartiere musulmano ottomano tra tè e botteghe.</p>
+            <div class="note-footer">
+              <span class="tag-inline free">Gratuito</span>
+              <span class="click-more">Clicca per dettagli 💡</span>
+            </div>
+          </div>
+
+          <!-- Attività 4 -->
+          <div class="sticky-note note-blue rot-left reveal act-card"
+               data-title="🌉 Stone Bridge + Piazza Macedonia"
+               data-cost="Gratuito · Consigliato al tramonto"
+               data-time="Tramonto"
+               data-text="Attraversa lo storico Stone Bridge del XV secolo, che congiunge la Skopje ottomana a quella moderna ed enorme. Piazza Macedonia ti lascerà di stucco con la mastodontica statua del Guerriero a Cavallo (Alessandro Magno) e le fontane coreografiche."
+               data-tips="💡 Al tramonto il ponte e gli edifici neoclassici lungo il fiume Vardar si illuminano di caldi fari dorati, perfetti per gli appassionati di fotografia!">
+            <span class="pin-doodle">📌</span>
+            <span class="note-time">Tramonto</span>
+            <h3>🌉 Stone Bridge al crepuscolo</h3>
+            <p>Passeggiata sul ponte di pietra e sbarco nella Skopje imperiale.</p>
+            <div class="note-footer">
+              <span class="tag-inline free">Gratuito</span>
+              <span class="click-more">Clicca per dettagli 💡</span>
+            </div>
+          </div>
+
+          <!-- Attività 5 -->
+          <div class="sticky-note note-pink reveal act-card"
+               data-title="🥙 Cena nel Bazar"
+               data-cost="5–8 €/pers."
+               data-time="Sera"
+               data-text="Cena tipica tra i tavoli all'aperto del Bazar. Prova i famosi ćevapi macedoni (kebap) da Destan o Kosmos, accompagnati da insalata Šopska (pomodori, cetrioli e formaggio grattugiato) e finisci in dolcezza con un ottimo baklava turco."
+               data-tips="💡 Molti ristoranti del Bazar non servono alcolici. Se vuoi una birra fresca, spostati nella vicina area di Debar Maalo, il quartiere bohémien di Skopje.">
+            <span class="washi-tape tape-pink"></span>
+            <span class="note-time">Sera</span>
+            <h3>🥙 Cena tradizionale</h3>
+            <p>Ćevapi squisiti, insalata Šopska e baklava al miele.</p>
+            <div class="note-footer">
+              <span class="tag-inline cost">5–8 €</span>
+              <span class="click-more">Clicca per dettagli 💡</span>
+            </div>
+          </div>
+
+        </div>
+
+        <blockquote class="pull-quote reveal">
+          "Skopje illuminata di notte è uno spettacolo: il ponte di pietra, il Museo Archeologico riflesso sul Vardar, le statue barocche di Piazza Macedonia. Una passeggiata serale è obbligatoria."
+        </blockquote>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══ GIORNO 4 (Skopje & Canyon) ══ -->
+  <section class="day alt" id="day4">
+    <div class="day-layout">
+      
+      <!-- Diario e Foglietti Attività -->
+      <div class="day-main order-2">
+        <div class="day-header reveal">
+          <span class="day-number">04</span>
+          <div>
+            <h2 class="day-title">Skopje &amp; Canyon Matka</h2>
+            <p class="day-subtitle">Storia patria, panorami bizantini e natura selvaggia</p>
+            <span class="day-badge badge-macedonia">🇲🇰 Skopje, Macedonia del Nord</span>
+          </div>
+        </div>
+
+        <div class="activities-canvas">
+          
+          <!-- Attività 1 -->
+          <div class="sticky-note note-yellow reveal act-card"
+               data-title="🪖 Museo della Lotta Macedone"
+               data-cost="~2 € (120 MKD)"
+               data-time="09:00"
+               data-text="Un museo imponente ed evocativo che ripercorre il cammino della Macedonia verso l'indipendenza tramite imponenti dipinti a olio, cimeli storici e decine di realistiche statue in cera di eroi nazionali e rivoluzionari."
+               data-tips="💡 La visita è guidata e molto teatrale. Ideale per comprendere le radici storiche dei complessi rapporti geopolitici balcanici.">
+            <span class="washi-tape tape-yellow"></span>
+            <span class="note-time">09:00</span>
+            <h3>🪖 Museo Lotta Macedone</h3>
+            <p>Figure in cera e quadri epici sulla travagliata indipendenza.</p>
+            <div class="note-footer">
+              <span class="tag-inline cost">~2 €</span>
+              <span class="click-more">Clicca per dettagli 💡</span>
+            </div>
+          </div>
+
+          <!-- Attività 2 -->
+          <div class="sticky-note note-pink rot-right reveal act-card"
+               data-title="🏰 Fortezza Kale"
+               data-cost="Gratuito · Consigliate scarpe comode"
+               data-time="11:00"
+               data-text="Mura bizantine del VI secolo arroccate sulla collina che sovrasta il Bazar. Una tranquilla camminata lungo i bastioni rimasti in piedi offre la migliore panoramica aerea sul fiume Vardar, lo stadio e la città moderna."
+               data-tips="💡 L'ingresso è totalmente libero. Non ci sono ringhiere o protezioni in alcuni tratti, quindi cammina con attenzione.">
+            <span class="pin-doodle">📎</span>
+            <span class="note-time">11:00</span>
+            <h3>🏰 Fortezza Kale</h3>
+            <p>Risalita a piedi sulle antiche mura per ammirare il panorama.</p>
+            <div class="note-footer">
+              <span class="tag-inline free">Gratis</span>
+              <span class="click-more">Clicca per dettagli 💡</span>
+            </div>
+          </div>
+
+          <!-- Attività 3 -->
+          <div class="sticky-note note-blue reveal act-card"
+               data-title="🥙 Pranzo rapido nel Bazar"
+               data-cost="3–5 €"
+               data-time="13:00"
+               data-text="Ultimo pranzo a Skopje con delizioso street food. Prova il Lahmacun (pizza turca arrotolata con carne macinata speziata) o un toast macedone gigante farcito con formaggio e prosciutto locale."
+               data-tips="💡 Un ottimo pranzo economico e veloce per non perdere tempo prima della gita al Canyon.">
+            <span class="pin-doodle">📍</span>
+            <span class="note-time">13:00</span>
+            <h3>🥙 Pranzo nel Bazar</h3>
+            <p>Street food speziato, goloso e super economico.</p>
+            <div class="note-footer">
+              <span class="tag-inline cost">3–5 €</span>
+              <span class="click-more">Clicca per dettagli 💡</span>
+            </div>
+          </div>
+
+          <!-- Attività 4 -->
+          <div class="sticky-note note-green rot-left reveal act-card"
+               data-title="🏞️ Matka Canyon (Consigliato!)"
+               data-cost="Taxi a/r ~15-20€ o bus n.60"
+               data-time="14:30"
+               data-text="Una gola naturale mozzafiato con pareti rocciose verticali che si specchiano in un lago verde smeraldo artificiale. Sentiero in piano scavato nella roccia, noleggio kayak e barche per raggiungere la grotta sommersa di Vrelo."
+               data-tips="💡 Il taxi impiega 30 minuti ed è comodissimo. Concorda il prezzo prima per l'andata e il ritorno, o chiedi al tassista di attenderti. Un giro in barca fino alle grotte costa circa 5€ ed è fantastico.">
+            <span class="washi-tape tape-blue"></span>
+            <span class="note-time">14:30</span>
+            <h3>🏞️ Escursione al Canyon Matka</h3>
+            <p>Spettacolare lago smeraldo tra rocce, kayak e antichi eremi.</p>
+            <div class="note-footer">
+              <span class="tag-inline cost">Opzionale</span>
+              <span class="click-more">Clicca per dettagli 💡</span>
+            </div>
+          </div>
+
+          <!-- Attività 5 -->
+          <div class="sticky-note note-yellow reveal act-card"
+               data-title="🏛️ Alternativa culturale in città"
+               data-cost="Tutto gratuito o quasi"
+               data-time="Alternativa pomeriggio"
+               data-text="Se preferisci restare in città, ci sono molte attrazioni gratis: l'Holocaust Memorial Center, il Museo della Città ospitato nella vecchia stazione terremotata del 1963, o la graziosa Casa Memoriale di Madre Teresa."
+               data-tips="💡 La vecchia stazione ferroviaria ha ancora l'orologio esterno fermo all'ora esatta del tragico terremoto: 5:17 del mattino.">
+            <span class="pin-doodle">📌</span>
+            <span class="note-time">Pomeriggio</span>
+            <h3>🏛️ Cultura &amp; Musei</h3>
+            <p>Memoriale Madre Teresa e la vecchia stazione del terremoto.</p>
+            <div class="note-footer">
+              <span class="tag-inline free">Gratis</span>
+              <span class="click-more">Clicca per dettagli 💡</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Visuals: Polaroid e Scritte -->
+      <div class="day-aside reveal-r order-1">
+        <div class="polaroid-wrapper rot-left">
+          <div class="polaroid-frame">
+            <span class="pushpin">📌</span>
+            <img src="matka_canyon_1780408442823.png" alt="Matka Canyon" />
+            <p class="polaroid-caption">L'incredibile Canyon Matka 🛶</p>
+          </div>
+        </div>
+        <div class="handwritten-sticker rot-left" style="background: var(--gold-lt);">
+          <p class="sticker-text">"Acqua smeraldo a 30 minuti di taxi!"</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══ BUDGET (Scontrino Pinned) ══ -->
+  <section class="budget-section" id="budget">
+    <div class="bud-wrap reveal">
+      
+      <p class="bud-kicker">Economia del viaggio</p>
+      <h2 class="bud-title">Budget <em>stimato</em></h2>
+      <p class="bud-note">Per persona · 4 giorni · escluso alloggio e volo A/R</p>
+      
+      <!-- Scontrino Spesa Fisico -->
+      <div class="travel-receipt-container">
+        <span class="receipt-clip">📎</span>
+        
+        <div class="travel-receipt">
+          <div class="receipt-header">
+            <h3>* BORDER TRIP 2026 *</h3>
+            <p>PRISTINA &amp; SKOPJE TRAVELERS</p>
+            <p>Data stima: Estate 2026</p>
+            <p>--------------------------------</p>
+          </div>
+          
+          <div class="receipt-items">
+            <div class="r-item">
+              <span class="ri-name">BUS PRISTINA -> SKOPJE</span>
+              <span class="ri-dots">..................</span>
+              <span class="ri-price">~7.50 EUR</span>
+            </div>
+            <div class="r-item">
+              <span class="ri-name">TRASPORTI URBANI &amp; TAXI</span>
+              <span class="ri-dots">...............</span>
+              <span class="ri-price">~4.00 EUR</span>
+            </div>
+            <div class="r-item">
+              <span class="ri-name">INGRESSI MUSEI &amp; CAMPANILE</span>
+              <span class="ri-dots">.............</span>
+              <span class="ri-price">~6.00 EUR</span>
+            </div>
+            <div class="r-item">
+              <span class="ri-name">COLAZIONI &amp; PRANZI</span>
+              <span class="ri-dots">...................</span>
+              <span class="ri-price">~18.00 EUR</span>
+            </div>
+            <div class="r-item">
+              <span class="ri-name">CENE TIPICHE BALCANICHE</span>
+              <span class="ri-dots">...............</span>
+              <span class="ri-price">~25.00 EUR</span>
+            </div>
+            <div class="r-item">
+              <span class="ri-name">CAFFE', SNACK &amp; PEJA BEER</span>
+              <span class="ri-dots">.............</span>
+              <span class="ri-price">~10.00 EUR</span>
+            </div>
+            <div class="r-item">
+              <span class="ri-name">SOUVENIR &amp; EXTRA</span>
+              <span class="ri-dots">...................</span>
+              <span class="ri-price">~7.50 EUR</span>
+            </div>
+            
+            <p class="receipt-divider">================================</p>
+            
+            <div class="r-item total-row">
+              <span class="ri-name">TOTALE STIMATO A PERSONA</span>
+              <span class="ri-price">~78.00 EUR</span>
+            </div>
+            <div class="r-item range-row">
+              <span class="ri-name">RANGE REALISTICO</span>
+              <span class="ri-price">60 - 90 EUR</span>
+            </div>
+          </div>
+          
+          <div class="receipt-footer">
+            <p>--------------------------------</p>
+            <p>GRAZIE PER IL VIAGGIO SULLA TELA!</p>
+            <p>* I prezzi reali variano sul posto *</p>
+            
+            <!-- Timbro di approvazione -->
+            <div class="stamp-approved">APPROVED 2026</div>
+          </div>
+        </div>
+      </div>
+
+      <p class="bud-lead">Kosovo e Macedonia del Nord sono tra le destinazioni più economiche d'Europa. 20–25 €/giorno (escluso alloggio) è una stima decisamente realistica.</p>
+    </div>
+  </section>
+
+  <!-- ══ INFO PRATICHE (Passaporto e Timbri) ══ -->
+  <section class="info-section" id="info">
+    <div class="info-wrap">
+      
+      <p class="bud-kicker">Prima di partire</p>
+      <h2 class="bud-title">Info <em>pratiche</em></h2>
+      
+      <!-- Taccuino Aperto / Passaporto -->
+      <div class="passport-notebook reveal">
+        <span class="spiral-spine"></span>
+        
+        <!-- Pagina 1: Kosovo -->
+        <div class="passport-page page-left">
+          <div class="stamp stamp-kosovo">
+            <span class="st-text">PRISTINA CONTROL</span>
+            <span class="st-date">22 LUG 2026</span>
+            <span class="st-country">KOSOVO</span>
+          </div>
+          
+          <h3 class="passport-title">🏳️ Kosovo</h3>
+          <dl class="passport-dl">
+            <dt>VALUTA UFFICIALE</dt>
+            <dd>Euro (EUR) - comodissimo</dd>
+            <dt>LINGUE PRINCIPALI</dt>
+            <dd>Albanese, Serbo (Inglese diffuso)</dd>
+            <dt>DOCUMENTI RICHIESTI</dt>
+            <dd>Carta d'identità UE (senza timbri)</dd>
+            <dt>CLIMA A LUGLIO</dt>
+            <dd>~30 °C, prevalentemente soleggiato</dd>
+            <dt>SIM INTERNET</dt>
+            <dd>SIM locale economica in centro</dd>
+          </dl>
+        </div>
+        
+        <!-- Pagina 2: Macedonia -->
+        <div class="passport-page page-right">
+          <div class="stamp stamp-macedonia">
+            <span class="st-text">SKOPJE ENTERED</span>
+            <span class="st-date">24 LUG 2026</span>
+            <span class="st-country">N. MACEDONIA</span>
+          </div>
+          
+          <h3 class="passport-title">🇲🇰 Macedonia del Nord</h3>
+          <dl class="passport-dl">
+            <dt>VALUTA UFFICIALE</dt>
+            <dd>Denar macedone (MKD) · 1 € ≈ 61 MKD</dd>
+            <dt>LINGUE PRINCIPALI</dt>
+            <dd>Macedone (cirillico), Albanese</dd>
+            <dt>DOCUMENTI RICHIESTI</dt>
+            <dd>Carta d'identità UE valida</dd>
+            <dt>CLIMA A LUGLIO</dt>
+            <dd>~32 °C, clima asciutto e caldo</dd>
+            <dt>CAMBIO E CARTE</dt>
+            <dd>Uffici cambio nel Bazar (portare contanti)</dd>
+          </dl>
+        </div>
+      </div>
+
+      <!-- Consigli staccabili con washi tape -->
+      <div class="tips-notebook reveal">
+        <span class="washi-tape tape-yellow"></span>
+        <h3 class="tips-header">Consigli finali dello scrittore ✏️</h3>
+        <ul class="tips-ul">
+          <li>Sia Pristina che Skopje sono città eccezionalmente sicure, accoglienti e facili da girare a piedi.</li>
+          <li>Porta sempre contanti (Euro per il Kosovo, Denar per Skopje): i piccoli caffè e banchetti del bazar difficilmente accettano carte.</li>
+          <li>Luglio è piena estate: muniti di crema solare e bevi molta acqua per le escursioni a piedi.</li>
+          <li>Prenota i tuoi alloggi o appartamenti Airbnb in centro con buon anticipo (luglio è alta stagione).</li>
+          <li>Verifica sempre gli orari dei bus sul sito <em>Gjirafa.com</em> o recandoti direttamente in stazione il giorno prima.</li>
+          <li>La domenica molti negozi e banchi del Bazar Ottomano di Skopje sono chiusi: pianifica di visitarlo di sabato o nei giorni feriali!</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══ FOOTER ══ -->
+  <footer class="footer">
+    <div class="ft-inner">
+      <p class="ft-title">Pristina → Skopje</p>
+      <p class="ft-sub">Estate 2026 · Una Tela Creativa Balcanica</p>
+      <p class="ft-fine font-caveat" style="font-size: 1.2rem; color: rgba(255,255,255,0.45);">"Il viaggio è un'opera d'arte che si dipinge a ogni passo..."</p>
+      <p class="ft-fine" style="margin-top: 1rem;">Prezzi e orari da verificare al momento della prenotazione sul posto.</p>
+    </div>
+  </footer>
+
+  <!-- ══ PAINT MODAL OVERLAY (Bolla che germoglia) ══ -->
+  <div id="paintModal" class="paint-modal">
+    <div class="paint-modal-content">
+      <button class="paint-modal-close" id="modalClose" aria-label="Chiudi">&times;</button>
+      <div class="paint-modal-splash"></div>
+      <div id="modalBody" class="paint-modal-body">
+        <!-- Riempito dinamicamente via JS -->
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
