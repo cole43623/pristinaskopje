@@ -439,24 +439,29 @@ const doc = new Document({
         pageBreakBefore: false,
         spacing: { before: 0, after: 0 },
         shading: { fill: NAVY, type: ShadingType.CLEAR },
-        children: [new TextRun({ text: "  GIORNO 1 \u2014 ARRIVO A PRISTINA", bold: true, size: 28, color: WHITE, font: "Arial" })]
+        children: [new TextRun({ text: "  GIORNO 1 \u2014 PRISTINA & TRASFERIMENTO", bold: true, size: 28, color: WHITE, font: "Arial" })]
       }),
       spacer(40),
-      new Paragraph({ spacing: { before: 0, after: 80 }, children: [new TextRun({ text: "Arrivo, sistemazione e primo giro esplorativo del centro", size: 20, color: GRAY, font: "Arial", italics: true })] }),
+      new Paragraph({ spacing: { before: 0, after: 80 }, children: [new TextRun({ text: "Esplorazione culturale di Pristina e viaggio serale per Skopje", size: 20, color: GRAY, font: "Arial", italics: true })] }),
 
       dayTable(
-        ["Mattina", "Primo pomeriggio", "Tardo pomeriggio", "Sera"],
+        ["Mattina", "Primo pomer.", "Tardo pomer.", "Sera"],
         [
-          "Arrivo a Pristina. Check-in Airbnb o ostello in centro. Colazione/caffe' al bar locale.",
-          "Newborn Monument + Memorial Heroines: i due simboli dell'indipendenza del Kosovo (2008). Distanza a piedi: 2 min.",
-          "Passeggiata su Mother Teresa Boulevard. Aperitivo in uno dei tanti caffe' del viale. Atmosfera vivace.",
-          "Cena tipica: provare il qebapa (carne grigliata), byrek (sfoglia con formaggio/carne) o taverna balcanica. Budget cena: 5-8 euro."
+          "Arrivo a Pristina, check-in. Visita del campus universitario: Biblioteca Nazionale (99 cupole), Cattedrale Madre Teresa e la Chiesa Cristo Salvatore.",
+          "Passeggiata lungo il Boulevard pedonale Nënë Tereza. Visita al Newborn Monument e al Memoriale Heroinat.",
+          "Ingresso nella parte ottomana: Grande Moschea (Xhamia e Madhe) e visita dello splendido Museo Etnografico (Emin Gjiku).",
+          "Trasferimento serale in bus per Skopje (~1h45m, frontiera inclusa). Sistemazione in alloggio a Skopje e cena tipica sul lungofiume Vardar."
         ],
-        ["Gratis. Portare documenti d'identita'.", "Entrambi gratuiti. 30-45 min totali.", "Gratuito. Ottimo per foto.", "Cena ~5-8 EUR/pers. Birra locale ~1.5 EUR."]
+        [
+          "Campanile Cattedrale: 2 EUR. Biblioteca: gratis.",
+          "Gratuito. Molto vivace.",
+          "Museo Etnografico: gratuito (consigliata mancia).",
+          "Bus ~7 EUR. Cena macedone ~6-10 EUR. Tavče Gravče!"
+        ]
       ),
 
       spacer(60),
-      sectionCard("\uD83D\uDCA1", "Consiglio Giorno 1", "Pristina e' una citta' molto giovane e vivace. I bar sono aperti fino a tardi e l'atmosfera serale sul Boulevard e' tra le migliori esperienze del viaggio. Non pianificare troppo per la prima sera: godetevi l'improvvisazione."),
+      sectionCard("\uD83D\uDCA1", "Consiglio Giorno 1", "Pristina e' una citta' giovane e accogliente. Il Newborn cambia veste grafica ogni anno il 17 febbraio. Prima di salire sul bus per Skopje, non perdetevi un ottimo macchiato in uno dei tantissimi bar del Boulevard (costo ~1 EUR)."),
 
       spacer(120),
 
@@ -464,27 +469,31 @@ const doc = new Document({
       new Paragraph({
         spacing: { before: 0, after: 0 },
         shading: { fill: NAVY, type: ShadingType.CLEAR },
-        children: [new TextRun({ text: "  GIORNO 2 \u2014 PRISTINA IN PROFONDITA'", bold: true, size: 28, color: WHITE, font: "Arial" })]
+        children: [new TextRun({ text: "  GIORNO 2 \u2014 SKOPJE MONUMENTALE & MUSEI", bold: true, size: 28, color: WHITE, font: "Arial" })]
       }),
       spacer(40),
-      new Paragraph({ spacing: { before: 0, after: 80 }, children: [new TextRun({ text: "Cultura, storia e architettura iconica", size: 20, color: GRAY, font: "Arial", italics: true })] }),
+      new Paragraph({ spacing: { before: 0, after: 80 }, children: [new TextRun({ text: "Piazza Macedonia, memoriali e musei della capitale", size: 20, color: GRAY, font: "Arial", italics: true })] }),
 
       dayTable(
-        ["09:00", "10:30", "12:00", "13:30", "15:30", "17:30", "Sera"],
+        ["Mattina", "11:30", "Pomeriggio", "16:00", "Sera"],
         [
-          "Biblioteca Nazionale Pjeter Bogdani: uno degli edifici piu' bizzarri e discussi d'Europa (99 cupole, griglia metallica). Visita esterna + interna. Ingresso gratuito.",
-          "Cattedrale di Madre Teresa: moderna cattedrale dedicata alla santa nata a Skopje. Salita in campanile: 2 EUR. Vista sulla citta'.",
-          "Piazza Skanderbeg: il cuore della citta'. Statua equestre, fontane, vita locale.",
-          "Pranzo: burek fresco alla macelleria-forno del centro (1.5-2 EUR a pezzo). Acqua, snack locali.",
-          "Museo Etnologico: casa ottomana del 1800, visita rapida (15 min), completamente gratuita. Staff molto disponibile.",
-          "Tempo libero: shopping souvenirs, caffe', esplorazione quartieri.",
-          "Cena in un ristorante con cucina tradizionale. Raccomandato: ristoranti lungo il Boulevard."
+          "Passeggiata in Piazza Macedonia per vedere l'imponente statua 'Guerriero a cavallo' (Alessandro Magno) e attraversamento dello storico Stone Bridge (XV sec.).",
+          "Visita al toccante Memoriale di Madre Teresa (costruito dove sorgeva la chiesa in cui fu battezzata).",
+          "Visita ai resti della Vecchia Stazione Ferroviaria, colpita dal sisma del 1963 (orologio fermo alle 5:17), oggi Museo della Citta'.",
+          "Visita all'imponente Museo della Lotta Macedone per l'Indipendenza (statue di cera realistiche e dipinti storici giganteschi).",
+          "Cena tradizionale nel quartiere bohemien di Debar Maalo, famoso per i suoi tavoli sotto le fronde, kafane storiche e musica folk dal vivo."
         ],
-        ["Gratis. Aperta lun-sab.", "Campanile 2 EUR. Aperta 8-19.", "Gratuito.", "~3-4 EUR totale pranzo.", "Gratuito. Aperto mar-dom.", "Souvenir ~2-10 EUR.", "~6-10 EUR/pers."]
+        [
+          "Gratuito.",
+          "Ingresso gratuito.",
+          "Ingresso gratuito.",
+          "Biglietto ~2 EUR (120 MKD). Visita guidata inclusa.",
+          "Cena ~6-10 EUR. Ottimi spiedini alla griglia e birra Skopsko."
+        ]
       ),
 
       spacer(60),
-      sectionCard("\uD83C\uDFDB\uFE0F", "Da non perdere: la Biblioteca Nazionale", "Spesso citata come 'l'edificio piu' brutto d'Europa', la Biblioteca Nazionale e' in realta' un capolavoro di architettura postmoderna: 99 cupole ispirate ai berretti albanesi, griglia metallica, fusione di stili islamici e bizantini. L'interno e' sorprendente quanto l'esterno."),
+      sectionCard("\uD83C\uDF09", "Skopje di notte", "Il centro di Skopje e' illuminato in modo spettacolare di sera: lo Stone Bridge, il Museo Archeologico con le sue enormi colonne neoclassiche riflesse sul fiume Vardar, e le decine di statue dorate. Una passeggiata serale e' obbligatoria."),
 
       spacer(120),
 
@@ -492,33 +501,29 @@ const doc = new Document({
       new Paragraph({
         spacing: { before: 0, after: 0 },
         shading: { fill: BLUE, type: ShadingType.CLEAR },
-        children: [new TextRun({ text: "  GIORNO 3 \u2014 PRISTINA \u2192 SKOPJE + CENTRO STORICO", bold: true, size: 28, color: WHITE, font: "Arial" })]
+        children: [new TextRun({ text: "  GIORNO 3 \u2014 MILLENNIUM CROSS & CANYON MATKA", bold: true, size: 28, color: WHITE, font: "Arial" })]
       }),
       spacer(40),
-      new Paragraph({ spacing: { before: 0, after: 80 }, children: [new TextRun({ text: "Trasferimento e immersione nel Bazar Ottomano", size: 20, color: GRAY, font: "Arial", italics: true })] }),
-
-      infoBox("Distanza", "Pristina - Skopje: ~95 km", "Durata", "~1h45m in bus, ~1h30m in auto"),
-      spacer(40),
-      infoBox("Bus consigliato", "Pristina Bus Terminal", "Frequenza", "Partenze ogni 30-60 min (mattina)"),
-      spacer(40),
-      infoBox("Prezzo bus", "Da verificare (tipicamente 5-8 EUR)", "Taxi/transfer", "Consultare prezzi attuali"),
-
-      spacer(60),
+      new Paragraph({ spacing: { before: 0, after: 80 }, children: [new TextRun({ text: "Panorama dal monte Vodno e gita nella natura selvaggia del Canyon", size: 20, color: GRAY, font: "Arial", italics: true })] }),
 
       dayTable(
-        ["Mattina", "Arrivo Skopje", "Pomeriggio", "Ora del tramonto", "Sera"],
+        ["Mattina", "Pomeriggio", "Pranzo tardi", "Sera"],
         [
-          "Check-out Airbnb Pristina. Trasferimento alla stazione bus. Partenza mattutina consigliata per avere il pomeriggio libero.",
-          "Arrivo Skopje. Check-in alloggio. Il centro e' raggiungibile a piedi dalla stazione bus.",
-          "Bazar Ottomano (Carsija): uno dei bazar ottomani piu' grandi dei Balcani. Moschee, caravanserragli, artigiani, cibo di strada. Almeno 2 ore.",
-          "Stone Bridge + Piazza Macedonia: il ponte ottomano del XV sec. che collega il bazar al centro moderno. Passeggiata sul lungofiume Vardar.",
-          "Cena nel Bazar: ristoranti tradizionali macedoni e turchi. Kebab, baklava, simit."
+          "Salita sul monte Vodno (in bus 25 o taxi) e funivia per raggiungere la sommità dove si trova la Millennium Cross (croce alta 66 metri).",
+          "Spostamento allo spettacolare Matka Canyon. Escursione a piedi sul sentiero scavato nella roccia o noleggio kayak / giro in barca alle grotte di Vrelo.",
+          "Pranzo rilassante con vista mozzafiato sul lago Matka, circondati da alte pareti rocciose.",
+          "Rientro a Skopje e cena rilassante nei pressi del fiume Vardar."
         ],
-        ["Partire entro le 9:00.", "~mezzogiorno", "Bazar: ingresso gratuito.", "Gratuito. Bellissimo di sera.", "~5-8 EUR/pers."]
+        [
+          "Funivia ~2 EUR (120 MKD). Vista fantastica.",
+          "Taxi a/r ~15-20 EUR (da dividere). Barca ~5 EUR.",
+          "Pranzo ~8-12 EUR. Ristorante sul lago molto suggestivo.",
+          "Cena ~6-10 EUR/pers. Birra Skopsko o vino locale."
+        ]
       ),
 
       spacer(60),
-      sectionCard("\uD83C\uDF09", "Skopje di notte", "Il centro di Skopje e' illuminato in modo spettacolare di sera: il ponte di pietra, il Museo Arqueologico con le colonne imponenti riflesse sul fiume, le statue barocche di Piazza Macedonia. Una passeggiata serale e' obbligatoria."),
+      sectionCard("\uD83D\uDEA3", "Attivita' al Matka Canyon", "La gita in barca sul lago artificiale di Matka e' il modo migliore per esplorare il canyon. Consente di sbarcare all'ingresso della Grotta Vrelo, caratterizzata da suggestive stallattiti e profondi laghi interni di acqua gelida."),
 
       spacer(120),
 
@@ -526,21 +531,27 @@ const doc = new Document({
       new Paragraph({
         spacing: { before: 0, after: 0 },
         shading: { fill: BLUE, type: ShadingType.CLEAR },
-        children: [new TextRun({ text: "  GIORNO 4 \u2014 SKOPJE / MATKA CANYON + PARTENZA", bold: true, size: 28, color: WHITE, font: "Arial" })]
+        children: [new TextRun({ text: "  GIORNO 4 \u2014 SKOPJE STORICA & PARTENZA", bold: true, size: 28, color: WHITE, font: "Arial" })]
       }),
       spacer(40),
-      new Paragraph({ spacing: { before: 0, after: 80 }, children: [new TextRun({ text: "Musei, fortezza panoramica e (opzionale) natura al canyon", size: 20, color: GRAY, font: "Arial", italics: true })] }),
+      new Paragraph({ spacing: { before: 0, after: 80 }, children: [new TextRun({ text: "Bazar ottomano, moschee storiche, fortezza e volo per Roma", size: 20, color: GRAY, font: "Arial", italics: true })] }),
 
       dayTable(
-        ["09:00", "11:00", "13:00", "14:30", "Fine giornata"],
+        ["09:30", "11:30", "13:00", "15:00", "Fine giornata"],
         [
-          "Museo della Lotta Macedone per l'Indipendenza: figure di cera, uniformi, bandiere, mappe. Coinvolgente e ben fatto. Aperto mar-dom, 10:00-18:00.",
-          "Fortezza Kale: risalita a piedi, vista panoramica su tutta Skopje. Mura bizantine del VI sec. espanse dagli Ottomani. Ingresso gratuito.",
-          "Pranzo veloce nel Bazar o al volo vicino alla fortezza.",
-          "OPZIONE NATURA: Matka Canyon (30 min in taxi/bus 60). Canyon spettacolare con lago, percorso escursionistico facile lungo l'acqua, grotte, kayak. Perfetto per una mezza giornata. OPPURE: Museo della Citta' di Skopje (vecchia stazione ferroviaria, gratis) + Memorial House Madre Teresa (gratis, aperto 9-19).",
-          "Rientro o trasferimento per proseguire il viaggio. Cena finale a Skopje."
+          "Visita al Bazar Ottomano (Čaršija): perdersi tra vicoli lastricati, caravanserragli (Suli An, Kapan An) e bere un tè turco.",
+          "Visita alla splendida Moschea di Mustafa Pascià (1492) e all'adiacente Chiesa di San Salvatore (Saint Spas) con iconostasi lignea.",
+          "Pranzo tradizionale nel Bazar a base di ćevapi cotti alla brace.",
+          "Esplorazione della Fortezza Kale (bastioni bizantini panoramici gratuiti) e Cattedrale bizantina moderna di San Clemente d'Ocrida.",
+          "Trasferimento all'aeroporto di Skopje (SKP) per il volo di rientro a Roma."
         ],
-        ["Biglietto ~100-120 MKD (~2 EUR).", "Gratis. Scarpe comode.", "~3-5 EUR.", "Taxi andata/ritorno da concordare. Bus 60 piu' economico.", "Cena finale ~6-10 EUR/pers."]
+        [
+          "Gratuito. Tè turco ~0.50 EUR.",
+          "Chiesa ~2 EUR (120 MKD). Moschea gratis.",
+          "Pranzo da Destan o Kosmos ~5-8 EUR.",
+          "Tutto gratuito.",
+          "Taxi per aeroporto ~20 EUR (da dividere) o bus di linea."
+        ]
       ),
 
       spacer(60),
@@ -557,13 +568,12 @@ const doc = new Document({
                 margins: { top: 120, bottom: 120, left: 200, right: 120 },
                 width: { size: 4680, type: WidthType.DXA },
                 children: [
-                  new Paragraph({ children: [new TextRun({ text: "\uD83D\uDEA3 Matka Canyon: cosa fare", bold: true, size: 22, color: NAVY, font: "Arial" })] }),
+                  new Paragraph({ children: [new TextRun({ text: "⛪ Saint Spas: cosa sapere", bold: true, size: 22, color: NAVY, font: "Arial" })] }),
                   spacer(40),
-                  new Paragraph({ numbering: { reference: "bullets", level: 0 }, children: [new TextRun({ text: "Escursione a piedi lungo il canyon (facile, piana)", size: 20, font: "Arial", color: "333333" })] }),
-                  new Paragraph({ numbering: { reference: "bullets", level: 0 }, children: [new TextRun({ text: "Giro in barca fino alle grotte (~5 EUR)", size: 20, font: "Arial", color: "333333" })] }),
-                  new Paragraph({ numbering: { reference: "bullets", level: 0 }, children: [new TextRun({ text: "Kayak/canoe a noleggio", size: 20, font: "Arial", color: "333333" })] }),
-                  new Paragraph({ numbering: { reference: "bullets", level: 0 }, children: [new TextRun({ text: "Chiesa di San Nicola sul sentiero (30 min)", size: 20, font: "Arial", color: "333333" })] }),
-                  new Paragraph({ numbering: { reference: "bullets", level: 0 }, children: [new TextRun({ text: "Bar/ristorante con vista sul lago", size: 20, font: "Arial", color: "333333" })] }),
+                  new Paragraph({ numbering: { reference: "bullets", level: 0 }, children: [new TextRun({ text: "Chiesa in parte sotterranea (limite altezza ottomano)", size: 20, font: "Arial", color: "333333" })] }),
+                  new Paragraph({ numbering: { reference: "bullets", level: 0 }, children: [new TextRun({ text: "Capolavoro di iconostasi in legno di noce intagliato", size: 20, font: "Arial", color: "333333" })] }),
+                  new Paragraph({ numbering: { reference: "bullets", level: 0 }, children: [new TextRun({ text: "Tomba dell'eroe nazionale Gotse Delchev nel cortile", size: 20, font: "Arial", color: "333333" })] }),
+                  new Paragraph({ numbering: { reference: "bullets", level: 0 }, children: [new TextRun({ text: "Costo ingresso irrisorio (~2 EUR / 120 MKD)", size: 20, font: "Arial", color: "333333" })] }),
                 ]
               }),
               new TableCell({
@@ -572,12 +582,12 @@ const doc = new Document({
                 margins: { top: 120, bottom: 120, left: 120, right: 200 },
                 width: { size: 4680, type: WidthType.DXA },
                 children: [
-                  new Paragraph({ children: [new TextRun({ text: "\uD83C\uDFDB\uFE0F Alternativa cultura", bold: true, size: 22, color: NAVY, font: "Arial" })] }),
+                  new Paragraph({ children: [new TextRun({ text: "Moschea & Old Bazaar", bold: true, size: 22, color: NAVY, font: "Arial" })] }),
                   spacer(40),
-                  new Paragraph({ numbering: { reference: "bullets", level: 0 }, children: [new TextRun({ text: "Holocaust Memorial Center (mar-sab, 9-19, gratuito)", size: 20, font: "Arial", color: "333333" })] }),
-                  new Paragraph({ numbering: { reference: "bullets", level: 0 }, children: [new TextRun({ text: "Museo della Citta' (nella vecchia stazione, gratis)", size: 20, font: "Arial", color: "333333" })] }),
-                  new Paragraph({ numbering: { reference: "bullets", level: 0 }, children: [new TextRun({ text: "Casa Memoriale Madre Teresa (gratis)", size: 20, font: "Arial", color: "333333" })] }),
-                  new Paragraph({ numbering: { reference: "bullets", level: 0 }, children: [new TextRun({ text: "Museo Archeologico della Macedonia del Nord", size: 20, font: "Arial", color: "333333" })] }),
+                  new Paragraph({ numbering: { reference: "bullets", level: 0 }, children: [new TextRun({ text: "Moschea di Mustafa Pascià (1492, imponente cupola)", size: 20, font: "Arial", color: "333333" })] }),
+                  new Paragraph({ numbering: { reference: "bullets", level: 0 }, children: [new TextRun({ text: "Caravanserragli storici ottomani (Suli An, Kapan An)", size: 20, font: "Arial", color: "333333" })] }),
+                  new Paragraph({ numbering: { reference: "bullets", level: 0 }, children: [new TextRun({ text: "Te' turco e baklava nei caffe' tradizionali del bazar", size: 20, font: "Arial", color: "333333" })] }),
+                  new Paragraph({ numbering: { reference: "bullets", level: 0 }, children: [new TextRun({ text: "Molti negozi e banchi sono chiusi di domenica", size: 20, font: "Arial", color: "333333" })] }),
                 ]
               }),
             ]

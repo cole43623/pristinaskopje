@@ -269,7 +269,7 @@ const activeObserver = new IntersectionObserver(entries => {
       swatches.forEach(swatch => {
         const targetHref = swatch.getAttribute('href');
         const isActive = targetHref === `#${id}` || 
-                         ((id === 'transfer' || id === 'day2-skopje') && targetHref === '#day2');
+                         (id === 'transfer' && targetHref === '#day1');
         
         if (isActive) {
           swatch.style.transform = 'scale(1.1) rotate(0deg) translateY(-4px)';

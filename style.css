@@ -646,9 +646,7 @@ em {
 .day {
   padding: 5rem 0 7rem;
 }
-.day.alt {
-  /* stesso sfondo fixed, usiamo spaziatura asimmetrica */
-}
+
 .day-layout {
   max-width: 1200px;
   margin: 0 auto;
