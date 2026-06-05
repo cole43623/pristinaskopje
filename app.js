@@ -82,7 +82,7 @@ window.addEventListener('mousemove', (e) => {
   
   const now = Date.now();
   if (now - lastDraw > drawInterval) {
-    createWatercolorDrop(e.pageX, e.pageY, false);
+    createWatercolorDrop(e.clientX, e.clientY, false);
     lastDraw = now;
   }
 });
@@ -95,7 +95,7 @@ window.addEventListener('click', (e) => {
   // Genera un cluster di bolle d'acqua
   const burstCount = Math.random() * 5 + 6;
   for (let i = 0; i < burstCount; i++) {
-    createWatercolorDrop(e.pageX, e.pageY, true);
+    createWatercolorDrop(e.clientX, e.clientY, true);
   }
 });
 
@@ -106,6 +106,7 @@ window.addEventListener('click', (e) => {
 const paintModal = document.getElementById('paintModal');
 const modalClose = document.getElementById('modalClose');
 const modalBody  = document.getElementById('modalBody');
+const modalContent = document.querySelector('.paint-modal-content');
 
 // Raccoglie tutti gli elementi cliccabili
 const actCards = document.querySelectorAll('.act-card');
@@ -172,6 +173,152 @@ window.addEventListener('keydown', (e) => {
     closeModal();
   }
 });
+
+// Swipe-to-close on mobile: chiusura trascinando lateralmente la modale
+if (modalContent && paintModal) {
+  let touchStartX = 0;
+  let touchStartY = 0;
+  let touchStartTime = 0;
+  let currentTranslateX = 0;
+  let isTouching = false;
+
+  function onModalTouchStart(e) {
+    if (!paintModal.classList.contains('open')) return;
+    if (window.innerWidth > 640) return; // solo mobile
+    const t = e.touches[0];
+    touchStartX = t.clientX;
+    touchStartY = t.clientY;
+    touchStartTime = Date.now();
+    currentTranslateX = 0;
+    isTouching = true;
+    modalContent.style.transition = 'none';
+  }
+
+  function onModalTouchMove(e) {
+    if (!isTouching) return;
+    const t = e.touches[0];
+    const dx = t.clientX - touchStartX;
+    const dy = t.clientY - touchStartY;
+    // Se prevale lo scorrimento verticale, annulliamo la gesture orizzontale
+    if (Math.abs(dy) > Math.abs(dx)) {
+      isTouching = false;
+      modalContent.style.transition = '';
+      modalContent.style.transform = '';
+      paintModal.style.background = '';
+      return;
+    }
+    e.preventDefault();
+    currentTranslateX = dx;
+    const rotate = dx / 20;
+    modalContent.style.transform = `translateX(${dx}px) translateZ(0) rotate(${rotate}deg)`;
+    const progress = Math.min(Math.abs(dx) / (window.innerWidth * 0.6), 1);
+    paintModal.style.background = `rgba(21, 48, 78, ${0.4 * (1 - progress)})`;
+  }
+
+  function onModalTouchEnd() {
+    if (!isTouching) return;
+    isTouching = false;
+    const dx = currentTranslateX;
+    const dt = Date.now() - touchStartTime;
+    const velocity = dt > 0 ? dx / dt : 0;
+    const absDx = Math.abs(dx);
+    const threshold = 80; // px soglia per chiudere
+    const velocityThreshold = 0.3; // px/ms
+    modalContent.style.transition = 'transform 220ms cubic-bezier(0.2,0.8,0.2,1)';
+    if (absDx > threshold || Math.abs(velocity) > velocityThreshold) {
+      const dir = dx > 0 ? 1 : -1;
+      const endX = dir * (window.innerWidth + 120);
+      modalContent.style.transform = `translateX(${endX}px)`;
+      paintModal.style.transition = 'opacity 220ms';
+      paintModal.style.opacity = '0';
+      setTimeout(() => {
+        modalContent.style.transition = '';
+        modalContent.style.transform = '';
+        paintModal.style.transition = '';
+        paintModal.style.opacity = '';
+        paintModal.style.background = '';
+        closeModal();
+      }, 220);
+    } else {
+      // ritorna allo stato iniziale
+      modalContent.style.transform = '';
+      paintModal.style.background = '';
+    }
+  }
+
+  paintModal.addEventListener('touchstart', onModalTouchStart, { passive: false });
+  paintModal.addEventListener('touchmove', onModalTouchMove, { passive: false });
+  paintModal.addEventListener('touchend', onModalTouchEnd);
+  paintModal.addEventListener('touchcancel', onModalTouchEnd);
+}
+
+// Swipe-to-close on mobile for paint modal (touch gestures)
+(() => {
+  const modalContent = document.querySelector('.paint-modal-content');
+  if (!modalContent) return;
+
+  let startX = 0, startY = 0, startTime = 0, isTouching = false;
+  const SWIPE_THRESHOLD = 80; // px
+  const SWIPE_VELOCITY = 0.4; // px/ms
+
+  function onTouchStart(e) {
+    if (window.innerWidth > 640) return;
+    if (!paintModal.classList.contains('open')) return;
+    const t = e.touches ? e.touches[0] : e;
+    startX = t.clientX;
+    startY = t.clientY;
+    startTime = Date.now();
+    isTouching = true;
+    modalContent.style.transition = 'none';
+  }
+
+  function onTouchMove(e) {
+    if (!isTouching) return;
+    const t = e.touches ? e.touches[0] : e;
+    const dx = t.clientX - startX;
+    const dy = t.clientY - startY;
+
+    // if vertical movement is greater, don't treat as horizontal swipe
+    if (Math.abs(dy) > Math.abs(dx)) return;
+
+    // prevent page scroll while swiping horizontally
+    e.preventDefault();
+
+    modalContent.style.transform = `translateX(${dx}px) scale(1) rotate(0deg)`;
+    const opacityFactor = 1 - Math.min(Math.abs(dx) / (window.innerWidth * 0.8), 1);
+    paintModal.style.background = `rgba(21, 48, 78, ${0.4 * opacityFactor})`;
+  }
+
+  function onTouchEnd(e) {
+    if (!isTouching) return;
+    isTouching = false;
+    const t = (e.changedTouches && e.changedTouches[0]) || e;
+    const dx = t.clientX - startX;
+    const dt = Date.now() - startTime;
+    const velocity = Math.abs(dx) / (dt || 1);
+
+    modalContent.style.transition = '';
+
+    if (Math.abs(dx) > SWIPE_THRESHOLD || velocity > SWIPE_VELOCITY) {
+      const dir = dx > 0 ? 1 : -1;
+      modalContent.style.transform = `translateX(${dir * window.innerWidth}px) scale(0.9) rotate(${dir * 6}deg)`;
+      paintModal.style.background = 'rgba(21, 48, 78, 0)';
+      setTimeout(() => {
+        closeModal();
+        modalContent.style.transform = '';
+        paintModal.style.background = '';
+      }, 260);
+    } else {
+      modalContent.style.transform = '';
+      paintModal.style.background = '';
+    }
+  }
+
+  modalContent.addEventListener('touchstart', onTouchStart, { passive: true });
+  modalContent.addEventListener('touchmove', onTouchMove, { passive: false });
+  modalContent.addEventListener('touchend', onTouchEnd, { passive: true });
+  modalContent.addEventListener('touchcancel', onTouchEnd, { passive: true });
+})();
 
 
 // ═══════════════════════════════════════
